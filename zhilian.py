@@ -42,7 +42,6 @@ def main(url,params,headers):
     val2 = 1
     val3 = 1
     val4 = 1
-    data = []
     for item in parse_page( get_page(url,params,headers) ):
         print(item)
         for key,value in item.items():
@@ -60,6 +59,9 @@ def main(url,params,headers):
             elif key == 'salary':
                 sheet.write(val4,3,value)
                 val4 += 1
+            else:
+                return None
+
     #保存
     book.save('d:\\data-analysis.xls')
 
@@ -82,7 +84,7 @@ if __name__ == "__main__":
         'p':1
     }
 
-    for p in range(1,100):
+    for p in range(1,11):
         payload['p'] = p
         main(url,payload,headers)
         time.sleep(1)
